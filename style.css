@@ -1,0 +1,41 @@
+html {
+	font-family: 'Roboto Slab', serif;
+	background-color: #f0efd1;
+}
+.layout-container {
+	max-width: 800px;
+	margin: 40px auto;
+}
+
+.heading {
+	font-size: 40px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.sub-heading {
+	font-size: 25px;
+	font-weight: bold;
+}
+.block-heading {
+	font-size: 22px;
+	font-weight: normal;
+}
+p {
+	font-size: 18px;
+}
+
+a {
+	color: #0070f3;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+img {
+	max-width: 100%;
+}
+ul {
+	font-size: 18px;
+}

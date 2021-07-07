@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /
+
+User-agent: DuplexWeb-Google
+Disallow: /
+
+User-agent: Google Favicon
+Disallow: /
+
+User-agent: googleweblight
+Disallow: /

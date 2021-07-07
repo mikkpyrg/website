@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Life of Mikk</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+	<div class="layout-container">
+		<h1 class="heading">Uptime</h1>
+		<p><a href="/index.html">Back to home</a></p>
+		<p>From newest to oldest</p>
+
+		<h2 class="sub-heading">Modern SSO in .NET</h2>
+		<p>Client wanted a centralized place to allow its customers and workers to login into their multiple systems. Using .Net Identity Server 4 and OpenID, we built a sleek, simple system to allow all that.</p>
+
+		<h2 class="sub-heading">Native mobile apps, that shows mostly Webview</h2>
+		<p>The cheapest way to get your client to the app market.</p>
+
+		<h2 class="sub-heading">Self-service website</h2>
+		<p>The client has multiple different systems and all of them had their own portals. They needed a solution to combine them. Cue Azure, Service Fabric, PostgreSQL and React.</p>
+		<h3 class="block-heading">Interesting bits</h2>
+		<ul>
+			<li>Totally Azure platform - Apart from the small downtimes, resulted in unoptimized code, for the most part the cloud platform worked great. Setting up new stuff was easy, and tracking everything from Application Insights is decent.</li>
+			<li>Service Fabric - Microsoft's version of all in one microservice platform. For the most part, coupled with Traefik, it's a decent tool. The 2 problems it has are: deployment time and logs aren't the best. They are actually big enough reasons that there we are currently working on replacing it for a simpler .NET Core API.</li>
+			<li>Onion architecture - Total overkill, but I like it.</li>
+			<li>Separate simplified Frontend hosting - Simple NginX backend that serves static React files to the user. All in Azure App Service.</li>
+			<li>Code first DB migrations - Good way to never lose DB changes.</li>
+		</ul>
+
+
+		<h2 class="sub-heading">Microservice infrastructure for a headless CMS</h2>
+		<p>Eventually the closed source system wasn't enough even for the client, so we built a new solution. The CMS portion was still as a service. They provided us with an editor UI, and we built services, that consumed the that content from an Elasticsearch stream. All the systems were hosted in AWS Cloud</p>
+		<h3 class="block-heading">Interesting bits</h2>
+		<ul>
+			<li>React - The frontend was in React. Didn't work with this a lot, as it was initially built by another company. Before the solution was in prod, we took it over. The interesting bit was that it was built in a container. All the 20+ sites. Also, server-side rendering provided the RSS feed. A lot of experimenting to get Google to properly crawl a site built with JavaScript.</li>
+			<li>PHP Laravel - The microservices were built separately and hosted in AWS EC2. First time developing in a virtual environment. In hindsight, it was a good idea. It kept a lot of OS dependent problems away by allowing the development and hosting to take place in Linux.</li>
+			<li>Cache - A big part of such content systems is a good caching system, so the server's don't die trying to ask content from DB all the time. I really liked the Elasticsearch portion of the headless CMS, it solved a lot of problems early. The takeaway of all of this is that if you're doing microservices, and you need caching, you need to do it remotely. A remote caching service. As local cache doesn't really work if there are multiple instances of services. Most problems were solved with cache headers for Frontend Gateway. The monetized content was a little more difficult.</li>
+		</ul>
+
+		<h2 class="sub-heading">Using a closed source CMS service for news</h2>
+		<p>My first job in the team. News oriented client, with over 20 different sites. My task was to create them, manage them. The system was similar to a template engine, that had specifically named files to create different layouts depending on the criteria. It also had an older version of a JavaScript backend script, for when we needed to calculate something on the server side dynamically. Everything else was mostly caches.</p>
+		<h3 class="block-heading">Interesting bits</h2>
+		<ul>
+			<li>CSS - Before, I didn't really have a chance to delve into the frontend side of the profession. This gave a good, well-rounded practical experience of everything front. From best practices, to keyframe animation, to optimizing the website's resources.</li>
+			<li>Thinking outside the box - The limitations of the system required a lot of ingenuity to get it to work like the customer wanted. It was even a little scary on how much can a typical CMS be bent to get a desirable solution. For example creating articles with a specific template, for the purpose of offering paid streaming videos. Or for example, using a browser extension to create a macro, so you can input editors into all the websites. There was no DB access and every site had its own dedicated UI and DB.</li>
+			<li>SSO OAuth2 - At some point with the numerous websites, we created an OAuth solution, so the client can be logged in multiple places.</li>
+			<li>Wordpress - Lots of small Wordpress sites.</li>
+			<li>React Native - While not really a finished product, for my bachelor's final thesis I created a React Native mobile prototype for the website. The catch was it was generic. Meaning, you could add any content provider into it, along with monetized content. OAuth allowed the user to log into multiple different providers and as a result the user could create their own feed of preferred content.</li>
+		</ul>
+	</div>
+</body>
+</html>
+
