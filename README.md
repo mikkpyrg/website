@@ -1,1 +1,1 @@
-Simple tiny website. I'll definitely make it more sophisticated in the future.
+Simple tiny website about me. It'll probably never be more sophisticated.
