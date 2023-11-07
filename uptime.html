@@ -14,41 +14,57 @@
 		<p><a href="/index.html">Back to home</a></p>
 		<p>From newest to oldest</p>
 
+		<h2 class="sub-heading">Couple of NDA projects</h2>
+		<p>All hush hush and such</p>
+
+		<h2 class="sub-heading">New App to an old backend</h2>
+		<p>The client's business is car rental. Think Bolt, where you can just pick up an available car on the spot.</p>
+		<p>The client had a horrible website and an unusable mobile app, that was developed by some other party. They had security holes and daily problems. They needed a secure, usable and marketable application for their customers to use. It was decided that it would be a mobile app.</p>
+		<ul>
+			<li>Only developed the backend - first time that I never touched FE, though a lot of communication was had with the FE folks, as you can't develop either BE or FE in solitude. Also, turns out that generating API mocks is mostly useless, as devs are fast enough to develop the actual thing. And lots of Standups or just communicate in general, to set up priorities, so that neither side is blocked by the other.</li>
+			<li>Integrating with an old system - While we built a modern backend with new services, we had to use the existing business logic and its services, to get it all working. There was not enough time or money to rebuild everything from scratch. This created a unique situation where our .net core project had to communicate effectively with .net 4.7 side. Caused some inconveniences(like having to use the old Newtonsoft Json serializer), but it also gave a unique experience on how a lot of things still stay the same and the things that have changed are easily replaceable.</li>
+			<li>Dedicated design developer - FE was basically developed by 3 guys, one was a designer/component builder, while the other 2 were devs that implemented what the first guy created. It created this really sleek pipeline, where design decisions, new ideas and full views all went through the designer, who created it all as a kind of code mock. The other 2 import that into the actual project and connect it with data, APIs, state management and whatnot to get it actually working. I really like this approach, as now there's never a situation where someone develops something the wrong way or makes it look different from the rest of the app. Gone are the days when a designer never actually codes and doesn't adhere to the best practises and creates like 15 different padding sizes, 8 different greys etc. It all goes through someone that communicates with the client on how it should look like. And with our growing tendency to move towards agile development, where analysis is as brief as possible, this at least protects the FE from devolving into a mess. This was made in React native</li>
+		</ul>
+		
 		<h2 class="sub-heading">Modern SSO in .NET</h2>
-		<p>Client wanted a centralized place to allow its customers and workers to login into their multiple systems. Using .Net Identity Server 4 and OpenID, we built a sleek, simple system to allow all that.</p>
+		<p>The client wanted a centralized place to allow its customers, employees, and third party developed apps to login. Using .Net Identity Server 4 and OpenID, we built a sleek, simple system to allow all that.</p>
+		<p>I built this project to fundamentally be simple(a lot of communication was had because of it). No external services or client specific business logic. Just an SSO. This made it easy to manage, usable in a lot of different scenarios and by the spec, so it was easy for third party devs to use. And in the SOLID principle, it kept its single purpose and does it well. It was one of my best examples on how educating the client is a big part of the job, not just fulfilling feature requests.</p>
 
 		<h2 class="sub-heading">Native mobile apps, that shows mostly Webview</h2>
-		<p>The cheapest way to get your client to the app market.</p>
+		<p>The cheapest way to get your client to the app market. Usually, the clients don't really care about the app itself, they just want to be on the Google and Apple platforms for extra visibility. Given that the platforms don't show websites, then the only solution is to bandage together a website in an app container. Kind of the worst of both worlds. The slow updates of apps coupled by the slower interactivity of websites. And in the end people do seem to use apps more, when given the choice, so it accomplishes the goal.</p>
 
 		<h2 class="sub-heading">Self-service website</h2>
-		<p>The client has multiple different systems and all of them had their own portals. They needed a solution to combine them. Cue Azure, Service Fabric, PostgreSQL and React.</p>
+		<p>The client sells energy, gas and fuel for the customers. I had already been in the project to improve and manage their systems for a couple of years.</p>
+		<p>The client has multiple different systems and all of them had their own portals. They needed a solution to combine them in an accessible modern way. Cue Azure, Service Fabric, PostgreSQL and React.</p>
 		<h3 class="block-heading">Interesting bits</h2>
 		<ul>
-			<li>Totally Azure platform - Apart from the small downtimes, resulted in unoptimized code, for the most part the cloud platform worked great. Setting up new stuff was easy, and tracking everything from Application Insights is decent.</li>
-			<li>Service Fabric - Microsoft's version of all in one microservice platform. For the most part, coupled with Traefik, it's a decent tool. The 2 problems it has are: deployment time and logs aren't the best. They are actually big enough reasons that there we are currently working on replacing it for a simpler .NET Core API.</li>
-			<li>Onion architecture - Total overkill, but I like it.</li>
+			<li>Totally Azure platform - Apart from the small downtimes, for the most part the cloud platform worked great. Setting up new stuff was easy, and tracking everything from Application Insights is decent.</li>
+			<li>Service Fabric - Microsoft's version of all in one microservice platform. For the most part, coupled with Traefik, it's a decent tool. The 2 problems it has are: deployment time and logs aren't the best. They turned out to be big enough reasons, that we forgo the whole microservice approach and replaced everything with simpler .NET Core APIs.</li>
+			<li>Onion architecture - Total overkill, but I kind of liked it. For smaller projects get rid of the whole logic layer. Just have service, data (db and repos) and core (db models and other such basic entity classes) layers</li>
 			<li>Separate simplified Frontend hosting - Simple NginX backend that serves static React files to the user. All in Azure App Service.</li>
 			<li>Code first DB migrations - Good way to never lose DB changes.</li>
+			<li>HSM - Here it's nationally possible to sign documents digitally. To automate the process of signing a document by the company, a crypto server (HSM) is required. I set up the whole thing (minus the HSM itself, as that was a service provided by the server provider). Lots of difficulties along the way, but nothing impossible.</li>
 		</ul>
 
 
 		<h2 class="sub-heading">Microservice infrastructure for a headless CMS</h2>
-		<p>Eventually the closed source system wasn't enough even for the client, so we built a new solution. The CMS portion was still as a service. They provided us with an editor UI, and we built services, that consumed the that content from an Elasticsearch stream. All the systems were hosted in AWS Cloud</p>
+		<p>Eventually the closed source system wasn't enough for the client, so we built a new solution. The CMS portion was still as a service. They provided us with an editor UI, and we built services, that consumed the content from an Elasticsearch stream. All the systems were hosted in AWS Cloud</p>
 		<h3 class="block-heading">Interesting bits</h2>
 		<ul>
-			<li>React - The frontend was in React. Didn't work with this a lot, as it was initially built by another company. Before the solution was in prod, we took it over. The interesting bit was that it was built in a container. All the 20+ sites. Also, server-side rendering provided the RSS feed. A lot of experimenting to get Google to properly crawl a site built with JavaScript.</li>
-			<li>PHP Laravel - The microservices were built separately and hosted in AWS EC2. First time developing in a virtual environment. In hindsight, it was a good idea. It kept a lot of OS dependent problems away by allowing the development and hosting to take place in Linux.</li>
-			<li>Cache - A big part of such content systems is a good caching system, so the server's don't die trying to ask content from DB all the time. I really liked the Elasticsearch portion of the headless CMS, it solved a lot of problems early. The takeaway of all of this is that if you're doing microservices, and you need caching, you need to do it remotely. A remote caching service. As local cache doesn't really work if there are multiple instances of services. Most problems were solved with cache headers for Frontend Gateway. The monetized content was a little more difficult.</li>
+			<li>React - The FE was in React. Didn't work with this a lot, as it was initially built by another company. Before the solution was in prod, we took it over. The interesting bit was that it was built in a container. All the 20+ sites. Also, server-side rendering provided the RSS feed and the first landing on the page. A lot of experimenting to get Google to properly crawl a site built with JavaScript.</li>
+			<li>PHP Laravel - The microservices were built separately and hosted on AWS EC2. First time developing in a virtual environment. In hindsight, it was a good idea. It kept a lot of OS dependent problems away by allowing the development and hosting to take place in Linux.</li>
+			<li>Cache - A big part of such content systems is a good caching system, so the server's don't die trying to ask content from DB all the time. I really liked the Elasticsearch portion of the headless CMS, it solved a lot of problems early. The takeaway from all of this is that if you're doing micro services, and you need caching, you need to do it remotely. A remote caching service. As local cache doesn't really work if there are multiple instances of services. Most problems were solved with cache headers for Frontend Gateway. The monetized content was a little more difficult.</li>
+			<li>Continues integrations - never have to drag files to dubious FTPs or read instructions on how to perform manual releases. Just set it up once, write the documentation, and never worry about it ever again.</li>
 		</ul>
 
 		<h2 class="sub-heading">Using a closed source CMS service for news</h2>
-		<p>My first job in the team. News oriented client, with over 20 different sites. My task was to create them, manage them. The system was similar to a template engine, that had specifically named files to create different layouts depending on the criteria. It also had an older version of a JavaScript backend script, for when we needed to calculate something on the server side dynamically. Everything else was mostly caches.</p>
+		<p>My first job in the team. News oriented client, with over 20 different sites. My task was to create them, manage them. The system was similar to a template engine, that had specifically named files to create different layouts depending on the criteria. It also had an older version of a JavaScript BE script, for when we needed to calculate something on the server side dynamically. Everything else was mostly caches.</p>
 		<h3 class="block-heading">Interesting bits</h2>
 		<ul>
-			<li>CSS - Before, I didn't really have a chance to delve into the frontend side of the profession. This gave a good, well-rounded practical experience of everything front. From best practices, to keyframe animation, to optimizing the website's resources.</li>
+			<li>CSS - Before, I didn't really have a chance to delve into the FE side of the profession. This gave a good, well-rounded practical experience of everything front. From best practices, to keyframe animation, to optimizing the website's resources.</li>
 			<li>Thinking outside the box - The limitations of the system required a lot of ingenuity to get it to work like the customer wanted. It was even a little scary on how much can a typical CMS be bent to get a desirable solution. For example creating articles with a specific template, for the purpose of offering paid streaming videos. Or for example, using a browser extension to create a macro, so you can input editors into all the websites. There was no DB access and every site had its own dedicated UI and DB.</li>
-			<li>SSO OAuth2 - At some point with the numerous websites, we created an OAuth solution, so the client can be logged in multiple places.</li>
-			<li>Wordpress - Lots of small Wordpress sites.</li>
+			<li>SSO OAuth2 - At some point with the numerous websites, we created an OAuth solution, so the client can be logged in multiple places. Required some custom logic on the SSO side, so it basically logs into all the websites at once, using the magic of Iframes.</li>
+			<li>Wordpress - Lots of small Wordpress sites were created to counter the limitations of the CMS system.</li>
 			<li>React Native - While not really a finished product, for my bachelor's final thesis I created a React Native mobile prototype for the website. The catch was it was generic. Meaning, you could add any content provider into it, along with monetized content. OAuth allowed the user to log into multiple different providers and as a result the user could create their own feed of preferred content.</li>
 		</ul>
 	</div>
